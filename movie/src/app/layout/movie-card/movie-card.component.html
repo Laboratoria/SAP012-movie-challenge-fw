@@ -1,0 +1,11 @@
+<section class="container__card-01 grid grid-cols-2 md:grid-cols-5 gap-4">
+  <mat-card class="container__card-full" *ngFor="let movie of movies">
+    <div class="card-content rounded-lg overflow-hidden">
+      <img class="container__card-image" mat-card-image [src]="movie.image_path" alt="Imagem do Filme">
+      <div class="card-details">
+        <h3 class="text-3xl font-bold">{{ movie.title }}</h3>
+        <p>Ano de Lançamento: {{ movie.release_year }}</p>
+      </div>
+    </div>
+  </mat-card>
+</section>
