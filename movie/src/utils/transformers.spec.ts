@@ -1,4 +1,3 @@
-// teste para verificar se esta retornando da base os dados corretos
 import { formatMovie } from './transformers';
 
 fdescribe('formatMovie', () => {
@@ -38,8 +37,8 @@ fdescribe('formatMovie', () => {
     expect(formattedMovie).toEqual({
       id: 1011985,
       title: 'Kung Fu Panda 4',
-      image_path: '/wkfG7DaExmcVsGLR4kLouMwxeT5.jpg',
+      image_path: 'https://image.tmdb.org/t/p/w500/wkfG7DaExmcVsGLR4kLouMwxeT5.jpg',
       release_year: '2024',
-    })
+    });
   });
 });
