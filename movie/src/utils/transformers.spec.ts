@@ -1,6 +1,6 @@
 import { formatMovie } from './transformers';
 
-fdescribe('formatMovie', () => {
+describe('formatMovie', () => {
   it('deve retornar um objeto com os quatro elementos solicitados', () => {
     const apiMovieData =
       {
