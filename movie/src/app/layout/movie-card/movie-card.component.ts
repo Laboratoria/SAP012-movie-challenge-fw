@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { APIService } from 'src/app/shared/services/api.service';
+
 import { Movie } from 'src/models/Movie';
 
 @Component({
@@ -11,9 +11,8 @@ export class MovieCardComponent implements OnInit {
 
   @Input() movie: Movie | undefined;
 
+
   constructor() {}
 
   ngOnInit(): void {}
-
-
 }
