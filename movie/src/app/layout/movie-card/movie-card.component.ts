@@ -7,21 +7,13 @@ import { Movie } from 'src/models/Movie';
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.css']
 })
-export class MovieCardComponent {
+export class MovieCardComponent implements OnInit {
 
-  @Input()
-  movies: Movie[] = [];
-  // images: string[] = [];
+  @Input() movie: Movie | undefined;
 
-  constructor(
-    readonly service: APIService
-  ) {
-    this.service.getMovies().subscribe({
-      next: movies => {
-        this.movies = movies;
-        console.log('Filmes recebidos:', movies); // Adiciona um console.log para exibir os filmes recebidos
-      },
-      error: error => console.error(error)
-    });
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
+
+
 }

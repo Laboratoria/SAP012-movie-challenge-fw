@@ -8,24 +8,27 @@ import { APIService } from './shared/services/api.service';
 import { HeaderComponent } from './layout/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MovieListComponent } from './layout/movie-list/movie-list.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieCardComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    CommonModule
   ],
-  providers: [
-    APIService
-  ],
+  exports: [MovieCardComponent],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

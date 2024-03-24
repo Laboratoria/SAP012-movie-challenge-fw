@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { MovieCardComponent } from './layout/movie-card/movie-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MovieListComponent } from './layout/movie-list/movie-list.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
     declarations: [
       AppComponent,
       HeaderComponent,
-      MovieCardComponent
+      MovieCardComponent,
+      MovieListComponent
     ]
   }));
 

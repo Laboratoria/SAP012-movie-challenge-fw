@@ -1,0 +1,12 @@
+<!-- Verifica se há filmes e se a lista não está vazia -->
+<div class="container__movie-list" *ngIf="movies && movies.length > 0">
+  <!-- Itera sobre cada filme na lista de filmes e renderiza o componente app-movie-card -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+    <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+  </div>
+</div>
+
+<!-- Verifica se não há filmes ou se a lista de filmes está vazia -->
+<div *ngIf="!movies || (movies.length === 0 && !moviesLoaded)" class="no-movies-message">
+  No movies found
+</div>
