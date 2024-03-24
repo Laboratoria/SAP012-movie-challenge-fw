@@ -20,7 +20,7 @@ describe('MovieCardComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('deveria criar', () => {
+  it('deve criar', () => {
     expect(component).toBeTruthy();
   });
 
@@ -30,28 +30,17 @@ describe('MovieCardComponent', () => {
       { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023' }
     ];
 
-    component.movies = testMovies;
+    component.movie = testMovies[0]; // Ajuste aqui para fornecer um filme válido
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;
-    const movieElements = compiled.querySelectorAll('.container__card-full');
+    const movieElement = compiled.querySelector('.container__card-full'); // Ajuste aqui para encontrar o elemento correto
 
-    expect(movieElements.length).toBe(testMovies.length);
+    expect(movieElement).toBeTruthy(); // Verifica se o elemento foi encontrado
 
-    testMovies.forEach((movie, index) => {
-      const movieElement = movieElements[index];
-      expect(movieElement.querySelector('.card-details h3').textContent).toContain(movie.title);
-      expect(movieElement.querySelector('.card-details p').textContent).toContain(movie.release_year);
-    });
+    // Verifica o conteúdo do card
+    expect(movieElement.querySelector('.card-details h3').textContent).toContain(testMovies[0].title);
+    expect(movieElement.querySelector('.card-details p').textContent).toContain(testMovies[0].release_year);
   });
 
-  it('deve lidar com array de filmes vazio', () => {
-    component.movies = [];
-    fixture.detectChanges();
-
-    const compiled = fixture.nativeElement;
-    const movieElements = compiled.querySelectorAll('.container__card-full');
-
-    expect(movieElements.length).toBe(0);
-  });
 });
