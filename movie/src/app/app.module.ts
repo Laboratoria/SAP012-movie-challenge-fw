@@ -16,6 +16,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { FooterComponent } from './layout/footer/footer.component';
+import { PaginationComponent } from './layout/pagination/pagination.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     HeaderComponent,
     MovieListComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
