@@ -1,0 +1,8 @@
+<div *ngIf="loading" class="loading-indicator">
+</div>
+
+<div *ngIf="error" class="error-message">
+  <p>{{ error }}</p>
+</div>
+
+<app-movie-list  [movies]="movies"></app-movie-list>
