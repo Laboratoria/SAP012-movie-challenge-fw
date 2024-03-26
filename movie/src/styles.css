@@ -8,10 +8,7 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-  /* background-color: #040714; */
-}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
