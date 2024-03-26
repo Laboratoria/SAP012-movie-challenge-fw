@@ -5,6 +5,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MovieCardComponent } from './layout/movie-card/movie-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MovieListComponent } from './layout/movie-list/movie-list.component';
+import { HomeComponent } from './layout/home/home.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -13,7 +15,9 @@ describe('AppComponent', () => {
       AppComponent,
       HeaderComponent,
       MovieCardComponent,
-      MovieListComponent
+      MovieListComponent,
+      HomeComponent,
+      FooterComponent
     ]
   }));
 

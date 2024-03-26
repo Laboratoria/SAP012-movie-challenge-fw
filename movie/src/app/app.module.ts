@@ -10,6 +10,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MovieListComponent } from './layout/movie-list/movie-list.component';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './layout/home/home.component';
+import { MatButtonModule} from '@angular/material/button';
+import { MatIconModule} from '@angular/material/icon';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { FooterComponent } from './layout/footer/footer.component';
 
 
 @NgModule({
@@ -17,7 +23,9 @@ import { CommonModule } from '@angular/common';
     AppComponent,
     MovieCardComponent,
     HeaderComponent,
-    MovieListComponent
+    MovieListComponent,
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,11 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    CommonModule
+    MatButtonModule,
+    CommonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   exports: [MovieCardComponent],
   providers: [APIService],
