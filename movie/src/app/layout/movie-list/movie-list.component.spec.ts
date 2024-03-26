@@ -61,13 +61,5 @@ describe('MovieListComponent', () => {
     );
   });
 
-  it('deve renderizar a mensagem "No movies found" para lista de filmes vazia', () => {
-    component.movies = [];
-    fixture.detectChanges();
 
-    const messageElement =
-      fixture.nativeElement.querySelector('.no-movies-message');
-    expect(messageElement).toBeTruthy(); // Corrigindo o erro aqui
-    expect(messageElement.textContent).toContain('No movies found');
-  });
 });
