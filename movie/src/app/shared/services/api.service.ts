@@ -13,7 +13,7 @@ export class APIService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<{ movies: Movie[]; totalPages: number }> {
+  getMovies(): Observable<{ filters: {page: number }, metaData: { pagination: { currentPage: number, totalPages: number }}, movies: Movie[] }> {
     const url = `https://api.themoviedb.org/3/discover/movie`;
     const headers = {
       'Authorization': `Bearer ${environment.TOKEN_API}`
@@ -21,8 +21,14 @@ export class APIService {
 
     return this.http.get<any>(url, { headers }).pipe(
       map((apiResponse: any) => ({
+        filters: { page: apiResponse.page },
+        metaData: {
+          pagination: {
+            currentPage: apiResponse.page,
+            totalPages: apiResponse.total_pages
+          }
+        },
         movies: apiResponse.results.map((movie: any) => formatMovie(movie)),
-        totalPages: apiResponse.total_pages
       }))
     );
   }

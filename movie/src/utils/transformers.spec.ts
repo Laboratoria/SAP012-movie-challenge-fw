@@ -33,7 +33,6 @@ describe('formatMovie', () => {
       };
 
     const formattedMovie = formatMovie(apiMovieData.results[0]);
-    console.log(formattedMovie);
     expect(formattedMovie).toEqual({
       id: 1011985,
       title: 'Kung Fu Panda 4',

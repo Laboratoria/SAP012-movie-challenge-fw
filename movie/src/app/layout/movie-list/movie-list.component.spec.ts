@@ -31,24 +31,17 @@ describe('MovieListComponent', () => {
       { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023' }
     ];
 
-    console.log('Movies:', movies);
-
     component.movies = movies;
     fixture.detectChanges();
 
     const movieCardElements =
       fixture.nativeElement.querySelectorAll('app-movie-card');
-    console.log('Elementos do Cards de filme:', movieCardElements);
 
     expect(movieCardElements.length).toBe(movies.length);
 
     movieCardElements.forEach(
       (movieCardElement: HTMLElement, index: number) => {
         const movie = movies[index];
-        console.log('Movie:', movie);
-        console.log('Title:', movie.title);
-        console.log('Release Year:', movie.release_year);
-        console.log('Image Path:', movie.image_path);
         expect(movieCardElement.textContent).toContain(movie.title);
         expect(movieCardElement.textContent).toContain(movie.release_year);
         // Certifique-se de que o atributo 'src' contém o caminho da imagem

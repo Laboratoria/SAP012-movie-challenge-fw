@@ -1,10 +1,10 @@
 <section class="container__card-01 grid grid-cols-2 md:grid-cols-5 gap-4 ">
   <mat-card class="container__card-full">
     <div class="card-content rounded-lg overflow-hidden">
-      <img class="container__card-image" mat-card-image [src]="movie?.image_path" [title]="movie?.title">
+      <img class="container__card-image image_path" mat-card-image [src]="movie?.image_path" [title]="movie?.title">
       <div class="card-details">
-        <h3 class="text-3xl font-bold">{{ movie?.title }}</h3>
-        <p>Ano de Lançamento: {{ movie?.release_year }}</p>
+        <h3 class="text-3xl font-bold title">{{ movie?.title }}</h3>
+        <p class="release_year">Ano de Lançamento: {{ movie?.release_year }}</p>
       </div>
     </div>
   </mat-card>

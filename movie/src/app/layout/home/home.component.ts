@@ -29,12 +29,12 @@ export class HomeComponent implements OnInit {
   loadData(): void {
     setTimeout(() => {
       this.APIService.getMovies().subscribe(
-        (response: { movies: Movie[], totalPages: number }) => {
+        (response: { filters: { page: number }, metaData: { pagination: { currentPage: number, totalPages: number }}, movies: Movie[] }) => {
           this.movies = response.movies.map(movie => ({
             ...movie,
             poster_path: `https://image.tmdb.org/t/p/original${movie.image_path}`
           }));
-          this.paginationState.totalPages = response.totalPages;
+          this.paginationState.totalPages = response.metaData.pagination.totalPages;
         },
         (error: any) => {
           console.error('Error loading movies:', error);
