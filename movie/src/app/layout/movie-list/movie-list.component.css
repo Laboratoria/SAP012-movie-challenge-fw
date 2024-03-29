@@ -17,7 +17,7 @@
  .no-movies-message {
   color: #ffffff;
  }
-.container__movie-list{
+ .container__movie-list{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

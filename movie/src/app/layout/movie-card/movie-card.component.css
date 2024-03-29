@@ -3,11 +3,9 @@
   height: 170px;
 } */
 .container__card-01 {
-  border-radius: 10px;
   display: flex;
-  margin: 10px;
-  flex-direction: row;
   flex-wrap: wrap;
+  flex-direction: row;
   align-content: center;
   justify-content: center;
   align-items: center;
@@ -24,13 +22,12 @@
 }
 
 .container__card-full:hover {
-  transform: scale(1.1);
-
+  transform: scale(1.02);
 }
 
-.card-content {
+/* .card-content {
   position: relative;
-}
+} */
 
 .card-details {
   text-align: center;
