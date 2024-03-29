@@ -1,1 +1,30 @@
-<p>pagination works!</p>
+<div class="items-center justify-between px-6 py-3 sm:px-6">
+  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+    <div>
+      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+
+        <a role="button"
+        (click)="selectPage(currentPage ? currentPage - 1 : 1)"
+        [attr.disabled]="currentPage === 1 ? true : null"
+        class="previous-button relative inline-flex items-center rounded-l-md px-2 py-3 text-white focus:z-20 focus:outline-offset-0">
+          Anterior
+        </a>
+        <ng-container *ngFor="let pageNumber of pages">
+          <a role="button"
+          aria-current="page"
+          class="relative inline-flex items-center px-7 py-2 text-1xl"
+          [ngClass]="{ 'text-gray-400 hover:text-white': currentPage !== pageNumber, 'text-white': currentPage === pageNumber }"
+          (click)="onSelectPage.emit(pageNumber)">{{ pageNumber }}</a>
+        </ng-container>
+
+        <a role="button"
+        (click)="selectPage(currentPage ? currentPage + 1 : 1)"
+        [attr.disabled]="currentPage === totalPages ? true : null"
+        class="next-button relative inline-flex items-center rounded-r-md px-2 py-3 text-white focus:z-20 focus:outline-offset-0">
+          Próximo
+        </a>
+
+      </nav>
+    </div>
+  </div>
+</div>

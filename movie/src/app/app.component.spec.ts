@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieListComponent } from './layout/movie-list/movie-list.component';
 import { HomeComponent } from './layout/home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { PaginationComponent } from './layout/pagination/pagination.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -17,7 +18,8 @@ describe('AppComponent', () => {
       MovieCardComponent,
       MovieListComponent,
       HomeComponent,
-      FooterComponent
+      FooterComponent,
+      PaginationComponent
     ]
   }));
 

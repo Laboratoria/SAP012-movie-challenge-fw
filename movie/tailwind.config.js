@@ -14,6 +14,7 @@ module.exports = {
         'bd-text-white-50': '#EFE6E6',
         'bd-red-100': '#DFCCCC',
         'bd-red-500': '#E5382A ',
+        'bd-azul-500': '#57C7D4',
       },
     },
   },

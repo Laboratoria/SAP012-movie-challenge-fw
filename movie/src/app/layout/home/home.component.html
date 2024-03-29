@@ -6,3 +6,10 @@
 </div>
 
 <app-movie-list  [movies]="movies"></app-movie-list>
+
+<app-pagination *ngIf="movies && movies.length > 0"
+  [currentPage]="paginationState.currentPage"
+  [totalPages]="paginationState.totalPages"
+  (onSelectPage)="onPageChange($event)">
+</app-pagination>
+

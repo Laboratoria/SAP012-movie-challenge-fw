@@ -1,51 +1,59 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from 'src/app/shared/services/api.service';
 import { Movie } from 'src/models/Movie';
-
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-
 })
-
 export class HomeComponent implements OnInit {
-
   movies: Movie[] = [];
-  paginationState: { currentPage: number, totalPages: number } = { currentPage: 1, totalPages: 1 };
+  paginationState: { currentPage: number; totalPages: number } = {
+    currentPage: 1,
+    totalPages: 1,
+  };
   error: string | null = null;
   loading: boolean = true;
 
-
-  constructor(private APIService: APIService) { }
-
-  ngOnInit(): void {
-
-   this.loadData();
+  constructor(
+    private apiService: APIService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.loadMovies(this.paginationState.currentPage);
   }
 
-  loadData(): void {
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const currentPage = params['currentPage']
+        ? parseInt(params['currentPage'])
+        : 1;
+      this.loadMovies(currentPage);
+    });
+  }
+
+  loadMovies(currentPage: number): void {
     setTimeout(() => {
-      this.APIService.getMovies().subscribe(
-        (response: { filters: { page: number }, metaData: { pagination: { currentPage: number, totalPages: number }}, movies: Movie[] }) => {
-          this.movies = response.movies.map(movie => ({
-            ...movie,
-            poster_path: `https://image.tmdb.org/t/p/original${movie.image_path}`
-          }));
-          this.paginationState.totalPages = response.metaData.pagination.totalPages;
+      this.apiService.getMovies({page: currentPage}).subscribe(
+        (response: any) => {
+          this.movies = response.movies;
+          this.paginationState.currentPage =
+            response.metaData.pagination.currentPage;
+          this.paginationState.totalPages =
+            response.metaData.pagination.totalPages;
         },
         (error: any) => {
           console.error('Error loading movies:', error);
-          this.error = 'Erro ao obter os dados dos filmes. Por favor, tente novamente mais tarde.';
+          this.error =
+            'Erro ao obter os dados dos filmes. Por favor, tente novamente mais tarde.';
         }
       );
-    }, 3000 );
+    }, 3000);
   }
 
   onPageChange(page: number): void {
-    this.paginationState.currentPage = page;
-    this.loadData();
+    this.router.navigate([], { queryParams: { currentPage: page } });
   }
 }

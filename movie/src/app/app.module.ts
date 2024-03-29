@@ -17,7 +17,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PaginationComponent } from './layout/pagination/pagination.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { PaginationComponent } from './layout/pagination/pagination.component';
     CommonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   exports: [MovieCardComponent],
   providers: [APIService],

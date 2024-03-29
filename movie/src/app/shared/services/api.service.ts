@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,8 +13,9 @@ export class APIService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<{ filters: {page: number }, metaData: { pagination: { currentPage: number, totalPages: number }}, movies: Movie[] }> {
-    const url = `https://api.themoviedb.org/3/discover/movie`;
+  getMovies(filters: { page: number } = { page: 1 }): Observable<{ filters: { page: number }, metaData: { pagination: { currentPage: number, totalPages: number } }, movies: Movie[] }> {
+    const page = filters.page || 1;
+    const url = `https://api.themoviedb.org/3/discover/movie?page=${page}`;
     const headers = {
       'Authorization': `Bearer ${environment.TOKEN_API}`
     };
