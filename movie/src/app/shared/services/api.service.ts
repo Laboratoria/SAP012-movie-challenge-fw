@@ -7,17 +7,21 @@ import { Movie } from 'src/models/Movie';
 import { formatMovie } from 'src/utils/transformers';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class APIService {
-
-  constructor(private http: HttpClient) { }
-  getMovies(filters: { page: number } = { page: 1 }): Observable<{ filters: { page: number }, metaData: { pagination: { currentPage: number, totalPages: number } }, movies: Movie[] }> {
-  // getMovies(filters: { page: number } = { page: 1 }): Observable<{ filters: { page: number }, metaData: { pagination: { currentPage: number, totalPages: number } }, movies: Movie[] }> {
+  constructor(private http: HttpClient) {}
+  getMovies(
+    filters: { page: number } = { page: 1 }
+  ): Observable<{
+    filters: { page: number };
+    metaData: { pagination: { currentPage: number; totalPages: number } };
+    movies: Movie[];
+  }> {
     const page = filters.page || 1;
     const url = `https://api.themoviedb.org/3/discover/movie?page=${page}`;
     const headers = {
-      'Authorization': `Bearer ${environment.TOKEN_API}`
+      Authorization: `Bearer ${environment.TOKEN_API}`,
     };
 
     return this.http.get<any>(url, { headers }).pipe(
@@ -26,19 +30,26 @@ export class APIService {
         metaData: {
           pagination: {
             currentPage: apiResponse.page,
-            totalPages: apiResponse.total_pages
-          }
+            totalPages: apiResponse.total_pages,
+          },
         },
         movies: apiResponse.results.map((movie: any) => formatMovie(movie)),
       }))
     );
   }
 
-  // Método para obter gêneros de filmes
-  getMovieGenres(): Observable<{id: number, name: string}[]> {
-    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${environment.TOKEN_API}`;
-    return this.http.get<any>(url).pipe(
-      map(response => response.genres)
+  getMovieGenres(): Observable<{ id: number; name: string }[]> {
+    const url = 'https://api.themoviedb.org/3/genre/movie/list';
+    const headers = {
+      Authorization: `Bearer ${environment.TOKEN_API}`,
+    };
+    return this.http.get<any>(url, { headers }).pipe(
+      map((apiResponse: any) =>
+        apiResponse.genres.map((genre: any) => ({
+          id: genre.id,
+          name: genre.name,
+        }))
+      )
     );
   }
 }
