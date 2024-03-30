@@ -12,13 +12,19 @@ import { formatMovie, formatGenresToMap } from 'src/utils/transformers';
 export class APIService {
   constructor(private http: HttpClient) {}
 
-  getMovies(filters: { page: number } = { page: 1 }): Observable<{ filters: { page: number }, metaData: { pagination: { currentPage: number; totalPages: number } }, movies: Movie[] }> {
+  getMovies(filters: { page: number, genreId?: number, sortBy?: string } = { page: 1 }): Observable<{ filters: { page: number, genreId?: number, sortBy?: string }, metaData: { pagination: { currentPage: number; totalPages: number } }, movies: Movie[] }> {
+
     return this.getMovieGenres().pipe(
       switchMap(genresArray => {
         const genresMap = formatGenresToMap(genresArray);
 
-        const page = filters.page || 1;
-        const url = `https://api.themoviedb.org/3/discover/movie?page=${page}`;
+        const queryParams = new URLSearchParams({
+          page: `${filters.page || 1}`,
+          ...(filters.genreId && { with_genres: `${filters.genreId}` }),
+          ...(filters.sortBy && { sort_by: filters.sortBy }),
+        }).toString();
+
+        const url = `https://api.themoviedb.org/3/discover/movie?${queryParams}`;
         const headers = {
           'Authorization': `Bearer ${environment.TOKEN_API}`,
         };
