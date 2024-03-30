@@ -30,17 +30,49 @@ describe('MovieCardComponent', () => {
       { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023', genres: ['Drama', 'Romance'] }
     ];
 
-    component.movie = testMovies[0]; // Ajuste aqui para fornecer um filme válido
+    component.movie = testMovies[0];
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;
-    const movieElement = compiled.querySelector('.container__card-full'); // Ajuste aqui para encontrar o elemento correto
+    const movieElement = compiled.querySelector('.container__card-full');
 
-    expect(movieElement).toBeTruthy(); // Verifica se o elemento foi encontrado
+    expect(movieElement).toBeTruthy();
 
-    // Verifica o conteúdo do card
     expect(movieElement.querySelector('.card-details h3').textContent).toContain(testMovies[0].title);
     expect(movieElement.querySelector('.card-details p').textContent).toContain(testMovies[0].release_year);
+  });
+
+  it('deve exibir corretamente os gêneros de um filme', () => {
+    component.movie = {
+      id: 3,
+      title: 'Movie 3',
+      image_path: 'path/to/image3.jpg',
+      release_year: '2024',
+      genres: ['Drama']
+    };
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement;
+    const genresElement = compiled.querySelector('.movie-genres');
+
+    expect(genresElement).toBeTruthy(); // Verifica se o elemento que contém os gêneros foi encontrado
+    expect(genresElement.textContent).toContain('Drama'); // Verifica se os gêneros estão sendo exibidos corretamente
+  });
+
+  it('deve exibir "Gêneros não disponíveis" para filmes sem gêneros', () => {
+    component.movie = {
+      id: 4,
+      title: 'Movie 4',
+      image_path: 'path/to/image4.jpg',
+      release_year: '2025',
+      genres: [] // Filme sem gêneros
+    };
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement;
+    const genresElement = compiled.querySelector('.movie-genres');
+
+    expect(genresElement).toBeTruthy();
   });
 
 });
