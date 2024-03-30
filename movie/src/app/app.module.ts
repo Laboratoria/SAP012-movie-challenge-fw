@@ -18,6 +18,7 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PaginationComponent } from './layout/pagination/pagination.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ListOptionsComponent } from './layout/list-options/list-options.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MovieListComponent,
     HomeComponent,
     FooterComponent,
-    PaginationComponent
+    PaginationComponent,
+    ListOptionsComponent
   ],
   imports: [
     BrowserModule,
