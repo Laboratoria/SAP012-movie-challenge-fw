@@ -1,7 +1,7 @@
 import { formatMovie } from './transformers';
 
 describe('formatMovie', () => {
-  it('deve retornar um objeto com os quatro elementos solicitados', () => {
+  it('deve retornar um objeto com os cinco elementos solicitados', () => {
     const apiMovieData = {
       results: [
         {
