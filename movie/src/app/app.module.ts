@@ -19,6 +19,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { PaginationComponent } from './layout/pagination/pagination.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListOptionsComponent } from './layout/list-options/list-options.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ListOptionsComponent } from './layout/list-options/list-options.compone
     MatIconModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    FormsModule
   ],
   exports: [MovieCardComponent],
   providers: [APIService],
