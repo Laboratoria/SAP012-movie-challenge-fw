@@ -1,12 +1,16 @@
-<select [(ngModel)]="selectedOption" (ngModelChange)="selectOption($event)" class="form-select">
-  <option value="" disabled>--Por favor escolha uma opção--</option>
-  <ng-container *ngFor="let option of options">
-    <option [ngValue]="option" [selected]="option.value === selectedOption?.value">
-      {{ option.label }}
-    </option>
-  </ng-container>
-</select>
-
-<button *ngIf="selectedOption" (click)="clearSelection()" class="btn-clear">
-  Limpar
-</button>
+<div class="mx-auto max-w-1440 px-4">
+  <div class="mt-5 w-full flex flex-col md:flex-row gap-4 items-center justify-start">
+    <!-- <select [(ngModel)]="selectedOption" (ngModelChange)="selectOption($event)" class="form-select w-full md:w-auto"> -->
+    <select [(ngModel)]="selectedOption" (ngModelChange)="selectOption($event)" class="form-select w-full md:w-auto">
+      <option value="" disabled selected>--Por favor escolha uma opção--</option>
+      <ng-container *ngFor="let option of options" >
+        <option [ngValue]="option.value" [selected]="option.value === selectedOption?.value">
+          {{ option.label }}
+        </option>
+      </ng-container>
+    </select>
+    <button *ngIf="selectedOption" (click)="clearSelection()" class="btn-clear w-full md:w-auto">
+      Limpar
+    </button>
+  </div>
+</div>

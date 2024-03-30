@@ -5,7 +5,8 @@
   <p>{{ error }}</p>
 </div>
 
-<app-list-options
+<section class="container__list-options flex flex-wrap container mx-auto max-w-1440">
+  <app-list-options
   [options]="genreOptions"
   (onChange)="onGenreChange($event)"
   title="Gêneros">
@@ -16,6 +17,7 @@
   (onChange)="onSortChange($event)"
   title="Ordenar Por">
 </app-list-options>
+</section>
 
 <app-movie-list  [movies]="movies"></app-movie-list>
 

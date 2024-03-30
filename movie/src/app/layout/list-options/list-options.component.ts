@@ -14,9 +14,12 @@ export class ListOptionsComponent {
 
   constructor() { }
 
-  selectOption(option: { value: string; label: string }): void {
-    this.selectedOption = option;
-    this.onChange.emit(this.selectedOption);
+  selectOption(value: string): void {
+    const option = this.options.find(o => o.value === value);
+    if (option) {
+      this.selectedOption = option;
+      this.onChange.emit(option);
+    }
   }
 
   clearSelection(): void {
