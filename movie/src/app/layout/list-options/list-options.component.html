@@ -1,1 +1,12 @@
-<p>list-options works!</p>
+<select [(ngModel)]="selectedOption" (ngModelChange)="selectOption($event)" class="form-select">
+  <option value="" disabled>--Por favor escolha uma opção--</option>
+  <ng-container *ngFor="let option of options">
+    <option [ngValue]="option" [selected]="option.value === selectedOption?.value">
+      {{ option.label }}
+    </option>
+  </ng-container>
+</select>
+
+<button *ngIf="selectedOption" (click)="clearSelection()" class="btn-clear">
+  Limpar
+</button>
