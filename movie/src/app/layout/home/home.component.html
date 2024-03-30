@@ -5,6 +5,18 @@
   <p>{{ error }}</p>
 </div>
 
+<app-list-options
+  [options]="genreOptions"
+  (onChange)="onGenreChange($event)"
+  title="Gêneros">
+</app-list-options>
+
+<app-list-options
+  [options]="sortOptions"
+  (onChange)="onSortChange($event)"
+  title="Ordenar Por">
+</app-list-options>
+
 <app-movie-list  [movies]="movies"></app-movie-list>
 
 <app-pagination *ngIf="movies && movies.length > 0"
