@@ -28,7 +28,6 @@ describe('APIService', () => {
   });
   // BEM-SUCEDIDO
   it('deve retornar dados dos filmes se a solicitação da API foi bem-sucedida', () => {
-    // Dados mockados para gêneros e filmes
     const genresMockResponse = {
       genres: [
         { id: 28, name: 'Action' },
@@ -45,7 +44,6 @@ describe('APIService', () => {
       ]
     };
 
-    // Executa getMovies() para iniciar o teste
     service.getMovies().subscribe((res) => {
       expect(res.movies.length).toBe(2);
       expect(res.movies[0].id).toBe(1);
@@ -54,13 +52,11 @@ describe('APIService', () => {
       expect(res.movies[1].genres).toContain('Adventure');
     });
 
-    // Primeiro, atende à requisição dos gêneros
     const reqGenres = httpMock.expectOne('https://api.themoviedb.org/3/genre/movie/list');
     expect(reqGenres.request.method).toBe('GET');
     reqGenres.flush(genresMockResponse);
 
-    // Em seguida, atende à requisição dos filmes
-    const reqMovies = httpMock.expectOne(`https://api.themoviedb.org/3/discover/movie?page=1`);
+    const reqMovies = httpMock.expectOne('https://api.themoviedb.org/3/discover/movie?'+ new URLSearchParams({page: '1'}).toString());
     expect(reqMovies.request.method).toBe('GET');
     reqMovies.flush(moviesMockResponse);
   });
@@ -80,14 +76,13 @@ describe('APIService', () => {
     const genresReq = httpMock.expectOne(`https://api.themoviedb.org/3/genre/movie/list`);
     genresReq.flush(genresMockResponse); // Primeiro responda à chamada dos gêneros
 
-    const moviesReq = httpMock.expectOne(`https://api.themoviedb.org/3/discover/movie?page=1`);
+    const moviesReq = httpMock.expectOne('https://api.themoviedb.org/3/discover/movie?'+ new URLSearchParams({page: '1'}).toString());
     moviesReq.flush(null, { status: 404, statusText: 'Not Found' }); // Em seguida, simule um erro na chamada dos filmes
 
   });
 
   // TESTE DE PAGINAÇÃO
   it('deve recuperar filmes com as informações de paginação', () => {
-     // Mock da resposta dos gêneros
      const genresMockResponse = {
       genres: [
         { id: 28, name: 'Action' },
@@ -95,7 +90,6 @@ describe('APIService', () => {
       ],
     };
 
-    // Mock da resposta dos filmes com paginação
     const moviesMockResponse = {
       page: 1,
       total_pages: 10,
@@ -105,24 +99,21 @@ describe('APIService', () => {
       ],
     };
 
-    // Chame getMovies() que, internamente, deverá primeiro buscar os gêneros
     service.getMovies().subscribe((res) => {
       expect(res.metaData.pagination.currentPage).toBe(1);
       expect(res.metaData.pagination.totalPages).toBe(10);
       expect(res.movies.length).toBe(2);
-      // Outras asserções conforme necessário
     });
 
-    // Primeiro, atenda à chamada esperada para os gêneros
     const reqGenres = httpMock.expectOne(`https://api.themoviedb.org/3/genre/movie/list`);
     expect(reqGenres.request.method).toBe('GET');
     reqGenres.flush(genresMockResponse);
 
-    // Em seguida, atenda à chamada esperada para os filmes
     const reqMovies = httpMock.expectOne(r => r.url.includes('https://api.themoviedb.org/3/discover/movie'));
     expect(reqMovies.request.method).toBe('GET');
     reqMovies.flush(moviesMockResponse);
   });
+
   // BEM SUCEDIDO LISTA DE GÊNEROS
   it('deve retornar a lista de gêneros de filmes se a solicitação da API foi bem-sucedida', () => {
     const mockGenresResponse = {
@@ -149,41 +140,72 @@ describe('APIService', () => {
     req.flush(mockGenresResponse);
   });
 
-  // it('deve retornar dados dos filmes e mapear os gêneros corretamente', (done) => {
-  //   // Mock das respostas da API
-  //   const mockGenresResponse = {
-  //     genres: [
-  //       { id: 28, name: 'Action' },
-  //       { id: 12, name: 'Adventure' }
-  //     ]
-  //   };
-  //   const mockMoviesResponse = {
-  //     page: 1,
-  //     total_pages: 1,
-  //     results: [
-  //       { id: 1, title: 'Movie 1', image_path: 'path/to/image1.jpg', release_year: '2022', genres: ['Action', 'Adventure'] },
-  //       { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023', genres: ['Drama', 'Romance'] }
-  //     ]
-  //   };
+  it('deve filtrar filmes por gênero quando um genreId é fornecido', () => {
+    const mockGenresResponse = { genres: [{ id: 28, name: 'Action' }] };
+    const mockFilteredMoviesResponse = {
+      page: 1,
+      total_pages: 1,
+      results: [{ id: 1, title: 'Action Movie', genre_ids: [28] }],
+    };
 
-  //   // Assumindo que getMovieGenres já tenha sido chamado em algum lugar antes
-  //   // ou seu efeito seja imitado aqui diretamente.
-  //   const reqGenres = httpMock.expectOne('https://api.themoviedb.org/3/genre/movie/list');
-  //   expect(reqGenres.request.method).toBe('GET');
-  //   reqGenres.flush(mockGenresResponse);
+    service.getMovies({ page: 1, genreId: 28 }).subscribe((res) => {
+      expect(res.movies.length).toBe(1);
+      expect(res.movies[0].genres).toContain('Action');
+    });
 
-  //   // Imediatamente após, testamos a chamada para os filmes.
-  //   service.getMovies().subscribe((response) => {
-  //     expect(response.movies.length).toEqual(2);
-  //     expect(response.movies[0].genres).toContain('Action');
-  //     expect(response.movies[1].genres).toContain('Adventure');
-  //     done();
-  //   });
+    const reqGenres = httpMock.expectOne('https://api.themoviedb.org/3/genre/movie/list');
+    reqGenres.flush(mockGenresResponse);
 
-  //   const reqMovies = httpMock.expectOne(`https://api.themoviedb.org/3/discover/movie?page=1`);
-  //   expect(reqMovies.request.method).toBe('GET');
-  //   reqMovies.flush(mockMoviesResponse);
-  // });
+    const reqMovies = httpMock.expectOne((req) => req.url.includes('with_genres=28'));
+    expect(reqMovies.request.method).toBe('GET');
+    reqMovies.flush(mockFilteredMoviesResponse);
+  });
+
+  it('deve ordenar filmes conforme o critério sortBy fornecido', () => {
+    const mockGenresResponse = { genres: [{ id: 28, name: 'Action' }] };
+    const mockSortedMoviesResponse = {
+      page: 1,
+      total_pages: 1,
+      results: [
+        { id: 2, title: 'Movie B', release_date: '2020-01-02' },
+        { id: 1, title: 'Movie A', release_date: '2020-01-01' }
+      ],
+    };
+
+    service.getMovies({ page: 1, sortBy: 'release_date.desc' }).subscribe((res) => {
+      expect(res.movies[0].title).toBe('Movie B');
+      expect(res.movies[1].title).toBe('Movie A');
+    });
+
+    const reqGenres = httpMock.expectOne('https://api.themoviedb.org/3/genre/movie/list');
+    reqGenres.flush(mockGenresResponse);
+
+    const reqMovies = httpMock.expectOne((req) => req.url.includes('sort_by=release_date.desc'));
+    expect(reqMovies.request.method).toBe('GET');
+    reqMovies.flush(mockSortedMoviesResponse);
+  });
+
+  it('deve usar valores padrão para genreId e sortBy quando não fornecidos', () => {
+    const mockGenresResponse = { genres: [{ id: 28, name: 'Action' }] };
+    const mockMoviesResponse = {
+      page: 1,
+      total_pages: 1,
+      results: [{ id: 1, title: 'Movie', genre_ids: [28] }],
+    };
+
+    service.getMovies({ page: 1 }).subscribe((res) => {
+      expect(res.movies.length).toBe(1);
+      expect(res.filters.genreId).toBeUndefined();
+      expect(res.filters.sortBy).toBeUndefined();
+    });
+
+    const reqGenres = httpMock.expectOne('https://api.themoviedb.org/3/genre/movie/list');
+    reqGenres.flush(mockGenresResponse);
+
+    const reqMovies = httpMock.expectOne((req) => !req.url.includes('with_genres') && !req.url.includes('sort_by'));
+    expect(reqMovies.request.method).toBe('GET');
+    reqMovies.flush(mockMoviesResponse);
+  });
 
 
 });
