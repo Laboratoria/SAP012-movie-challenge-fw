@@ -26,8 +26,8 @@ describe('MovieCardComponent', () => {
 
   it('deve exibir o título do filme e o ano de lançamento', () => {
     const testMovies: Movie[] = [
-      { id: 1, title: 'Movie 1', image_path: 'path/to/image1.jpg', release_year: '2022' },
-      { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023' }
+      { id: 1, title: 'Movie 1', image_path: 'path/to/image1.jpg', release_year: '2022', genres: ['Action', 'Adventure'] },
+      { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023', genres: ['Drama', 'Romance'] }
     ];
 
     component.movie = testMovies[0]; // Ajuste aqui para fornecer um filme válido

@@ -49,12 +49,14 @@ describe('HomeComponent', () => {
         title: 'Movie 1',
         image_path: 'path/to/image1.jpg',
         release_year: '2022',
+        genres: ['Action', 'Adventure']
       },
       {
         id: 2,
         title: 'Movie 2',
         image_path: 'path/to/image2.jpg',
         release_year: '2023',
+        genres: ['Drama', 'Romance']
       },
     ];
     spyOn(apiService, 'getMovies').and.returnValue(
