@@ -5,6 +5,7 @@ import {
 } from '@angular/common/http/testing';
 import { APIService } from './api.service';
 import { environment } from 'src/environments/environment';
+import { Movie } from 'src/models/Movie';
 
 describe('APIService', () => {
   let service: APIService;
@@ -207,5 +208,5 @@ describe('APIService', () => {
     reqMovies.flush(mockMoviesResponse);
   });
 
-
 });
+

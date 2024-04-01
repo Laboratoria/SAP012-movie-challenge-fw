@@ -12,6 +12,25 @@ import { formatMovie, formatGenresToMap } from 'src/utils/transformers';
 export class APIService {
   constructor(private http: HttpClient) {}
 
+  getMovieDetail(id: number): Observable<Movie> {
+    // Primeiro, recuperamos os gêneros para garantir que temos o mapeamento disponível
+    return this.getMovieGenres().pipe(
+      switchMap(genresArray => {
+        const genresMap = formatGenresToMap(genresArray);
+
+        const url = `https://api.themoviedb.org/3/movie/${id}`;
+        const headers = {
+          'Authorization': `Bearer ${environment.TOKEN_API}`,
+        };
+
+        // Agora, recuperamos os detalhes do filme
+        return this.http.get<any>(url, { headers }).pipe(
+          map(apiMovieData => formatMovie(apiMovieData, genresMap))
+        );
+      })
+    );
+  }
+
   getMovies(filters: { page: number, genreId?: number, sortBy?: string } = { page: 1 }): Observable<{ filters: { page: number, genreId?: number, sortBy?: string }, metaData: { pagination: { currentPage: number; totalPages: number } }, movies: Movie[] }> {
 
     return this.getMovieGenres().pipe(
@@ -54,4 +73,7 @@ export class APIService {
       map(apiResponse => apiResponse.genres)
     );
   }
+
+
+
 }

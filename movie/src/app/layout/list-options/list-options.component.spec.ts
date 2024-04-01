@@ -24,9 +24,11 @@ describe('ListOptionsComponent', () => {
 
   it('deve emitir onChange quando uma opção é selecionada', () => {
     spyOn(component.onChange, 'emit');
-    const mockOption = { value: 'testValue', label: 'Test Label' };
-    component.selectOption(mockOption);
-    expect(component.onChange.emit).toHaveBeenCalledWith(mockOption);
+    component.options = [
+      { value: 'testValue', label: 'Test Label' }
+    ];
+    component.selectOption('testValue');
+    expect(component.onChange.emit).toHaveBeenCalledWith({ value: 'testValue', label: 'Test Label' });
   });
 
   it('deve emitir onClear quando a seleção for desmarcada', () => {

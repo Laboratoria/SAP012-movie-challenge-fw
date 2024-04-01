@@ -1,4 +1,6 @@
-
+nav {
+  padding: 20px;
+}
 .container__links{
   display: flex;
   justify-content: right;

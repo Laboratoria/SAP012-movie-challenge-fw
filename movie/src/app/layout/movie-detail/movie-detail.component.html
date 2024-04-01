@@ -1,0 +1,23 @@
+<div *ngIf="loading" class="loading-indicator">
+</div>
+
+<div *ngIf="error">{{ error }}</div>
+
+<section *ngIf="movie" class="flex flex-wrap justify-between items-center mx-auto max-w-1440 my-5">
+  <div class="w-1/2">
+    <div class="p-4">
+      <button (click)="goBack()" class="flex items-center justify-center text-white rounded-full">
+        <i class='fas fa-long-arrow-alt-left border border-red-500'></i> Voltar à lista de filmes
+      </button>
+    </div>
+    <div class="p-4">
+      <h2 class="text-3xl text-white">{{ movie.title }}</h2>
+      <span class="text-white">{{ movie.release_year }}</span>
+      <p class="text-xl text-white">{{ movie.overview }}</p>
+    </div>
+  </div>
+
+  <div class="w-1/2 p-4 flex justify-end">
+    <img [src]="movie.image_path" alt="Poster" class="rounded-lg">
+  </div>
+</section>

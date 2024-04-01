@@ -1,10 +1,7 @@
+
 <div class="container__movie-list " *ngIf="movies && movies.length > 0">
   <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-1440">
     <app-movie-card *ngFor="let movie of movies" [movie]="movie">
     </app-movie-card>
   </div>
-</div>
-
-<div *ngIf="!movies || (movies.length === 0 )" class="flex justify-center" >
-  <mat-progress-bar class="bg-rose-500 spinner-movie" mode="indeterminate"></mat-progress-bar>
 </div>

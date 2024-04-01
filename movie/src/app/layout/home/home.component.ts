@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService } from 'src/app/shared/services/api.service';
+import { Genre } from 'src/models/Genre';
 import { Movie } from 'src/models/Movie';
 
 @Component({
@@ -10,8 +11,8 @@ import { Movie } from 'src/models/Movie';
 })
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
-  genreOptions: { value: string; label: string }[] = [];
-  sortOptions: { value: string; label: string }[] = [
+  genreOptions: string[] = [];
+  sortOptions: Genre[] = [
     { value: 'popularity.desc', label: 'Mais populares' },
     { value: 'release_date.desc', label: 'Mais recentes' },
     { value: 'vote_average.desc', label: 'Melhor avaliados' },
@@ -22,17 +23,20 @@ export class HomeComponent implements OnInit {
   };
   error: string | null = null;
   loading: boolean = true;
+  selectedGenre: Genre = {value: "", label: ""}
+  selectedSort: Genre = {value: "", label: ""}
 
   constructor(
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.loadMovies(this.paginationState.currentPage);
+    // this.loadMovies(this.paginationState.currentPage);
   }
 
   ngOnInit(): void {
     this.loadGenres();
+    // this.loadMovies(this.paginationState.currentPage);
     this.route.queryParams.subscribe(params => {
       const genreId = params['genreId'] ? parseInt(params['genreId'], 10) : undefined;
       const sortBy = params['sortBy'];
@@ -41,17 +45,35 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  clearFilters(): void {
+    this.loadMovies(1);
+    this.router.navigate([], { queryParams: {genreId: null, sortBy: null, currentPage: 1}});
+    this.selectedGenre = {value: "", label: ""}
+    this.selectedSort = {value: "", label: ""}
+  }
+
   loadGenres(): void {
     this.apiService.getMovieGenres().subscribe(genres => {
-      this.genreOptions = genres.map(genre => ({
-        value: genre.id.toString(),
-        label: genre.name
-      }));
+      this.genreOptions = genres.map(genre => {
+        return JSON.stringify( {
+          value: genre.id.toString(),
+          label: genre.name
+        } as Genre )
+        }
+
+      );
+
+      this.selectedGenre = {value: "", label: ""}
+      this.selectedSort = {value: "", label: ""}
     });
   }
 
-  onGenreChange(selectedGenre: { value: string; label: string }): void {
+  onGenreChange(selectedGenre: Genre): void {
     this.router.navigate([], { queryParams: { genreId: selectedGenre.value, currentPage: 1 }, queryParamsHandling: 'merge' });
+    // this.loadMovies(this.paginationState.currentPage, selectedGenre.value)
+    // console.log('====================================');
+    console.log(selectedGenre);
+    // console.log('====================================');
   }
 
   onSortChange(selectedSort: { value: string; label: string }): void {

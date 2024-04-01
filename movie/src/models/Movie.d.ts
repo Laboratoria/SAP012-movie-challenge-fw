@@ -4,4 +4,5 @@ export interface Movie {
   image_path: string;
   release_year: string;
   genres: string[];
+  overview: string;
 }

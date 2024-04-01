@@ -1,13 +1,20 @@
-<section class="container__card-01 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2  lg:px-0 justify-center items-center max-w-1440" >
-  <div class="container__card-full  transform transition duration-300 ease-in-out hover:scale-105 bg-white rounded-lg overflow-hidden shadow-lg">
+<section
+  class="container__card-01 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 lg:px-0 justify-center items-center max-w-1440">
+  <div
+    class="container__card-full transform transition duration-300 ease-in-out hover:scale-105 bg-white rounded-lg overflow-hidden shadow-lg"
+    [routerLink]="['/movie', movie?.id]">
     <div class="card-content bg-bd-header">
-      <img class="container__card-image object-cover w-full h-64 md:h-96" [src]="movie?.image_path" [title]="movie?.title">
-      <div class="card-details p-4 absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 text-white opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 flex flex-col justify-center">
+      <img class="container__card-image object-cover w-full h-64 md:h-96" [src]="movie?.image_path"
+        [title]="movie?.title">
+      <div
+        class="card-details p-4 absolute bottom-0 left-0 right-0 bg-black bg-opacity-80 text-white opacity-0 transition-opacity duration-300 ease-in-out hover:opacity-100 flex flex-col justify-center">
         <h3 class="text-lg md:text-xl font-bold text-left mb-2">{{ movie?.title }}</h3>
         <p class="release_year text-xs md:text-sm text-left">Lançamento: {{ movie?.release_year }}</p>
-        <div class="movie-genres ">
-          <span class="genres text-xs border border-red-500 text-white  m-1 rounded-full" *ngFor="let genre of movie?.genres; let isLast=last">
-            {{ genre }}<ng-container *ngIf="!isLast"> </ng-container></span>
+        <div class="movie-genres">
+          <span class="genres text-xs border border-red-500 text-white m-1 rounded-full"
+            *ngFor="let genre of movie?.genres; let isLast=last">
+            {{ genre }}<ng-container *ngIf="!isLast">,</ng-container>
+          </span>
         </div>
       </div>
     </div>

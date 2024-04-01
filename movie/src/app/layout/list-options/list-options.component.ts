@@ -1,29 +1,33 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Genre } from 'src/models/Genre';
 
 @Component({
   selector: 'app-list-options',
   templateUrl: './list-options.component.html',
   styleUrls: ['./list-options.component.css']
 })
-export class ListOptionsComponent {
-  @Input() options: { value: string; label: string }[] = [];
-  @Input() selectedOption: { value: string; label: string } | null = null;
+export class ListOptionsComponent implements OnChanges {
+  @Input() options: string[] = [];
+  @Input() selectedOption: Genre = {value: "", label: ""};
+  optionsObj: Genre[] = [];
+  selectedOptionStr: string = "";
 
-  @Output() onChange: EventEmitter<{ value: string; label: string }> = new EventEmitter();
+  @Output() onChange: EventEmitter<Genre> = new EventEmitter<Genre>();
   @Output() onClear: EventEmitter<void> = new EventEmitter();
 
   constructor() { }
 
-  selectOption(value: string): void {
-    const option = this.options.find(o => o.value === value);
-    if (option) {
-      this.selectedOption = option;
-      this.onChange.emit(option);
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.optionsObj = this.options.map(option => JSON.parse(option));
   }
 
+  selectOption(): void {
+    this.selectedOption = JSON.parse(this.selectedOptionStr);
+
+    this.onChange.emit(this.selectedOption);
+}
+
   clearSelection(): void {
-    this.selectedOption = null;
-    this.onClear.emit();
+    this.selectedOptionStr = "";
   }
 }

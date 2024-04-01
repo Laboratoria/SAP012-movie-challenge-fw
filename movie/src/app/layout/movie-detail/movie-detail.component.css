@@ -1,0 +1,16 @@
+
+.container--btnVoltar, .container--descricao {
+  width: 50%;
+}
+
+i {
+  padding: 5px;
+  border-radius: 50%;
+
+}
+
+img {
+  width: 70%;
+  height: auto;
+  border-radius: 10px;
+}

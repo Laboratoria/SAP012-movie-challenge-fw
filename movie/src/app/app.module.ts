@@ -20,6 +20,7 @@ import { PaginationComponent } from './layout/pagination/pagination.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ListOptionsComponent } from './layout/list-options/list-options.component';
 import { FormsModule } from '@angular/forms';
+import { MovieDetailComponent } from './layout/movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     FooterComponent,
     PaginationComponent,
-    ListOptionsComponent
+    ListOptionsComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,

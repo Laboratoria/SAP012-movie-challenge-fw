@@ -8,19 +8,17 @@
   border-left: 1px solid #ef4444;
   border-right: 1px solid #ef4444;
   background-color: transparent;
-  color: white;
   width: 100%;
+  cursor: pointer;
 }
 .form-select option{
   background-color: #0E1428;
   padding: 8px 4px;
-  color: #fff;
   border-radius: 20px;
 }
  option{
   background-color: #0E1428;
   padding: 8px 4px;
-  color: #fff;
   border-radius: 20px;
 }
 
@@ -32,19 +30,5 @@ input:focus {
   outline: none;
 }
 
-.btn-clear{
- /* display: none; */
- color: #fff;
-}
-
-.selected {
-  color: #fff;
-  font-weight: bold;
-}
-.options-container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-}
 
 
