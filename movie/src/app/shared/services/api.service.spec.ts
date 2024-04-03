@@ -4,7 +4,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { APIService } from './api.service';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { Movie } from 'src/models/Movie';
 
 describe('APIService', () => {
