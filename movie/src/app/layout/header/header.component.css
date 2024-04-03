@@ -1,0 +1,10 @@
+nav {
+  padding: 20px;
+}
+.container__links{
+  display: flex;
+  justify-content: right;
+}
+/* .bg-bd-background {
+  box-shadow: 6px 14px 50px -19px rgba(0,0,0,0.38);
+} */

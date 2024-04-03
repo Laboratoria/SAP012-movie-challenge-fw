@@ -1,0 +1,42 @@
+<div *ngIf="!movies || (movies.length === 0 )" class="flex justify-center" >
+  <mat-progress-bar class="bg-rose-500 spinner-movie" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div *ngIf="loading" class="loading-indicator">
+</div>
+
+<div *ngIf="error" class="error-message">
+  <p>{{ error }}</p>
+</div>
+
+<section *ngIf="genreOptions.length > 0" class="container__list-options flex flex-wrap container mx-auto max-w-1440">
+  <app-list-options
+    [options]="genreOptions"
+    (onChange)="onGenreChange($event)"
+    [selectedOption]= "selectedGenreValue"
+    [toClear]="toClear"
+    title="Gêneros">
+  </app-list-options>
+
+  <app-list-options
+    [options]="sortOptions"
+    (onChange)="onSortChange($event)"
+    [selectedOption]= "selectedSortValue"
+    [toClear]="toClear"
+    title="Ordenar Por">
+  </app-list-options>
+
+  <button
+    (click)="clearFilters()"
+    class="btn-clear">
+    Limpar
+  </button>
+</section>
+
+<app-movie-list  [movies]="movies"></app-movie-list>
+
+<app-pagination *ngIf="movies && movies.length > 0"
+  [currentPage]="paginationState.currentPage"
+  [totalPages]="paginationState.totalPages"
+  (onSelectPage)="onPageChange($event)">
+</app-pagination>

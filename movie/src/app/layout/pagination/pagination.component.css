@@ -1,0 +1,20 @@
+.btn-pagination-anterior,
+.btn-pagination-proximo {
+  color: #ffffff;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+a:hover {
+  color: red;
+}
+
+a:hover[aria-current="page"] {
+  border-top: 2px solid red;
+}
