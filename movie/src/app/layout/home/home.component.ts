@@ -12,26 +12,29 @@ import { Movie } from 'src/models/Movie';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   genreOptions: string[] = [];
-  sortOptions: Genre[] = [
-    { value: 'popularity.desc', label: 'Mais populares' },
-    { value: 'release_date.desc', label: 'Mais recentes' },
-    { value: 'vote_average.desc', label: 'Melhor avaliados' },
+  sortOptions: string[] = [
+    JSON.stringify({ value: 'popularity.desc', label: 'Mais populares' }),
+    JSON.stringify({ value: 'release_date.desc', label: 'Mais recentes' }),
+    JSON.stringify({ value: 'vote_average.desc', label: 'Melhor avaliados' }),
   ];
+
   paginationState: { currentPage: number; totalPages: number } = {
     currentPage: 1,
     totalPages: 1,
   };
+
   error: string | null = null;
   loading: boolean = true;
-  selectedGenre: Genre = {value: "", label: ""}
-  selectedSort: Genre = {value: "", label: ""}
+  selectedGenreValue: string = "0"
+  selectedSortValue: string = ""
+  toClear: boolean = false;
 
   constructor(
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    // this.loadMovies(this.paginationState.currentPage);
+    this.loadMovies(this.paginationState.currentPage);
   }
 
   ngOnInit(): void {
@@ -42,14 +45,17 @@ export class HomeComponent implements OnInit {
       const sortBy = params['sortBy'];
       const currentPage = params['currentPage'] ? parseInt(params['currentPage'], 10) : 1;
       this.loadMovies(currentPage, genreId, sortBy);
+      this.toClear = false;
     });
   }
 
   clearFilters(): void {
     this.loadMovies(1);
-    this.router.navigate([], { queryParams: {genreId: null, sortBy: null, currentPage: 1}});
-    this.selectedGenre = {value: "", label: ""}
-    this.selectedSort = {value: "", label: ""}
+    this.selectedGenreValue = "0"
+    this.selectedSortValue = ""
+    this.router.navigate([], { queryParams: {genreId: this.selectedGenreValue, sortBy: this.selectedSortValue, currentPage: 1}});
+    this.toClear = true
+
   }
 
   loadGenres(): void {
@@ -63,21 +69,17 @@ export class HomeComponent implements OnInit {
 
       );
 
-      this.selectedGenre = {value: "", label: ""}
-      this.selectedSort = {value: "", label: ""}
+      this.selectedGenreValue = "0"
+      this.selectedSortValue = ""
     });
   }
 
-  onGenreChange(selectedGenre: Genre): void {
-    this.router.navigate([], { queryParams: { genreId: selectedGenre.value, currentPage: 1 }, queryParamsHandling: 'merge' });
-    // this.loadMovies(this.paginationState.currentPage, selectedGenre.value)
-    // console.log('====================================');
-    console.log(selectedGenre);
-    // console.log('====================================');
+  onGenreChange(selectedGenre: string): void {
+    this.router.navigate([], { queryParams: { genreId: selectedGenre, currentPage: 1 }, queryParamsHandling: 'merge' });
   }
 
-  onSortChange(selectedSort: { value: string; label: string }): void {
-    this.router.navigate([], { queryParams: { sortBy: selectedSort.value, currentPage: 1 }, queryParamsHandling: 'merge' });
+  onSortChange(selectedSort: string): void {
+    this.router.navigate([], { queryParams: { sortBy: selectedSort, currentPage: 1 }, queryParamsHandling: 'merge' });
   }
 
   loadMovies(currentPage: number, genreId?: number, sortBy?: string): void {

@@ -11,13 +11,21 @@
       </button>
     </div>
     <div class="p-4">
-      <h2 class="text-3xl text-white">{{ movie.title }}</h2>
+      <h2 class="text-5xl text-white">{{ movie.title }}</h2>
+      <h3 class="text-white p-overview">{{ movie.overview }}</h3>
+
+      <span class="text-white ">★ {{ movie.vote_average.toFixed(1) }}</span>
       <span class="text-white">{{ movie.release_year }}</span>
-      <p class="text-xl text-white">{{ movie.overview }}</p>
+      <div class="movie-genres">
+        <span class="genres text-xs border border-red-500 text-white m-1 rounded-full"
+          *ngFor="let genre of movie?.genres; let isLast=last">
+          {{ movie.genres }}<ng-container *ngIf="!isLast"></ng-container>
+        </span>
+      </div>
     </div>
   </div>
 
   <div class="w-1/2 p-4 flex justify-end">
-    <img [src]="movie.image_path" alt="Poster" class="rounded-lg">
+    <img [src]="movie.image_path" alt="Poster" class="rounded-lg degrade ">
   </div>
 </section>

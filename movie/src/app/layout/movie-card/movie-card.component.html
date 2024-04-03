@@ -13,7 +13,7 @@
         <div class="movie-genres">
           <span class="genres text-xs border border-red-500 text-white m-1 rounded-full"
             *ngFor="let genre of movie?.genres; let isLast=last">
-            {{ genre }}<ng-container *ngIf="!isLast">,</ng-container>
+            {{ genre }}<ng-container *ngIf="!isLast"></ng-container>
           </span>
         </div>
       </div>

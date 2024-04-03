@@ -13,16 +13,18 @@
   <app-list-options
     [options]="genreOptions"
     (onChange)="onGenreChange($event)"
-    [selectedOption]= "selectedGenre"
+    [selectedOption]= "selectedGenreValue"
+    [toClear]="toClear"
     title="Gêneros">
   </app-list-options>
 
-  <!-- <app-list-options
-    [options]=sortOptions
-    (onChange)=onSortChange($event)
-    [selectedOption]= selectedSort
+  <app-list-options
+    [options]="sortOptions"
+    (onChange)="onSortChange($event)"
+    [selectedOption]= "selectedSortValue"
+    [toClear]="toClear"
     title="Ordenar Por">
-  </app-list-options> -->
+  </app-list-options>
 
   <button
     (click)="clearFilters()"

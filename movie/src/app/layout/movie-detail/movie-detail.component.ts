@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService } from 'src/app/shared/services/api.service';
 import { Movie } from 'src/models/Movie';
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./movie-detail.component.css']
 })
 export class MovieDetailComponent implements OnInit{
-  movie: Movie | null = null;
+  @Input() movie: Movie | undefined;
   loading: boolean = false;
   error: string = '';
 
@@ -36,4 +36,6 @@ export class MovieDetailComponent implements OnInit{
       });
     }
   }
+
+
 }
