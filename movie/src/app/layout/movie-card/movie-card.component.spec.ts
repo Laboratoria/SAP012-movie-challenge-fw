@@ -3,6 +3,7 @@ import { MovieCardComponent } from './movie-card.component';
 import { Movie } from 'src/models/Movie';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
 
 describe('MovieCardComponent', () => {
   let component: MovieCardComponent;
@@ -13,7 +14,8 @@ describe('MovieCardComponent', () => {
       declarations: [MovieCardComponent],
       imports: [
         HttpClientTestingModule,
-        MatCardModule
+        MatCardModule,
+        RouterModule.forRoot([])
       ]
     });
     fixture = TestBed.createComponent(MovieCardComponent);
@@ -26,8 +28,20 @@ describe('MovieCardComponent', () => {
 
   it('deve exibir o título do filme e o ano de lançamento', () => {
     const testMovies: Movie[] = [
-      { id: 1, title: 'Movie 1', image_path: 'path/to/image1.jpg', release_year: '2022', genres: ['Action', 'Adventure'] },
-      { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023', genres: ['Drama', 'Romance'] }
+      { id: 1, title: 'Movie 1',
+      image_path: 'path/to/image1.jpg',
+      release_year: '2022',
+      genres: ['Action', 'Adventure'],
+      overview: 'Overview do Movie 1',
+      vote_average: 7.5
+    },
+      { id: 2, title: 'Movie 2',
+      image_path: 'path/to/image2.jpg',
+      release_year: '2023',
+      genres: ['Drama', 'Romance'],
+      overview: 'Overview do Movie 2',
+      vote_average: 8.0
+    }
     ];
 
     component.movie = testMovies[0];
@@ -48,7 +62,9 @@ describe('MovieCardComponent', () => {
       title: 'Movie 3',
       image_path: 'path/to/image3.jpg',
       release_year: '2024',
-      genres: ['Drama']
+      genres: ['Drama'],
+      overview: 'Overview do Movie 3',
+      vote_average: 9.0
     };
     fixture.detectChanges();
 
@@ -65,7 +81,9 @@ describe('MovieCardComponent', () => {
       title: 'Movie 4',
       image_path: 'path/to/image4.jpg',
       release_year: '2025',
-      genres: [] // Filme sem gêneros
+      genres: [],
+      overview: 'Overview do Movie 4',
+      vote_average: 7.5
     };
     fixture.detectChanges();
 

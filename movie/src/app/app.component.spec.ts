@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PaginationComponent } from './layout/pagination/pagination.component';
 import { ListOptionsComponent } from './layout/list-options/list-options.component';
+import { MovieDetailComponent } from './layout/movie-detail/movie-detail.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -21,7 +22,8 @@ describe('AppComponent', () => {
       HomeComponent,
       FooterComponent,
       PaginationComponent,
-      ListOptionsComponent
+      ListOptionsComponent,
+      MovieDetailComponent
     ]
   }));
 

@@ -4,6 +4,7 @@ import { Movie } from 'src/models/Movie';
 import { MovieCardComponent } from '../movie-card/movie-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
 
 describe('MovieListComponent', () => {
   let component: MovieListComponent;
@@ -12,7 +13,11 @@ describe('MovieListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MovieListComponent, MovieCardComponent],
-      imports: [HttpClientModule, MatCardModule],
+      imports: [
+        HttpClientModule,
+        MatCardModule,
+        RouterModule.forRoot([])
+      ],
     }).compileComponents();
   });
 
@@ -27,8 +32,20 @@ describe('MovieListComponent', () => {
 
   it('deve renderizar a lista de filmes', () => {
     const movies: Movie[] = [
-      { id: 1, title: 'Movie 1', image_path: 'path/to/image1.jpg', release_year: '2022', genres: ['Action', 'Adventure'] },
-      { id: 2, title: 'Movie 2', image_path: 'path/to/image2.jpg', release_year: '2023', genres: ['Drama', 'Romance'] }
+      { id: 1, title: 'Movie 1',
+      image_path: 'path/to/image1.jpg',
+      release_year: '2022',
+      genres: ['Action', 'Adventure'],
+      overview: 'Overview do Movie 1',
+        vote_average: 7.5
+    },
+      { id: 2, title: 'Movie 2',
+      image_path: 'path/to/image2.jpg',
+      release_year: '2023',
+      genres: ['Drama', 'Romance'],
+      overview: 'Overview do Movie 2',
+      vote_average: 8.0
+    }
     ];
 
     component.movies = movies;
@@ -44,9 +61,8 @@ describe('MovieListComponent', () => {
         const movie = movies[index];
         expect(movieCardElement.textContent).toContain(movie.title);
         expect(movieCardElement.textContent).toContain(movie.release_year);
-        // Certifique-se de que o atributo 'src' contém o caminho da imagem
         const imgElement = movieCardElement.querySelector('img');
-        expect(imgElement).toBeTruthy(); // Verifica se existe um elemento de imagem dentro do movieCardElement
+        expect(imgElement).toBeTruthy();
         if (imgElement) {
             expect(imgElement.getAttribute('src')).toContain(movie.image_path);
         }

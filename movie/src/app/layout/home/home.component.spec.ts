@@ -55,14 +55,18 @@ describe('HomeComponent', () => {
         title: 'Movie 1',
         image_path: 'path/to/image1.jpg',
         release_year: '2022',
-        genres: ['Action', 'Adventure']
+        genres: ['Action', 'Adventure'],
+        overview: 'Overview do Movie 1',
+        vote_average: 7.5
       },
       {
         id: 2,
         title: 'Movie 2',
         image_path: 'path/to/image2.jpg',
         release_year: '2023',
-        genres: ['Drama', 'Romance']
+        genres: ['Drama', 'Romance'],
+        overview: 'Overview do Movie 2',
+        vote_average: 8.0
       },
     ];
     spyOn(apiService, 'getMovies').and.returnValue(
@@ -74,7 +78,7 @@ describe('HomeComponent', () => {
     );
     expect(movies).toBeTruthy();
     component.ngOnInit();
-    tick(3000); // Avance o relógio em 3000 milissegundos
+    tick(3000);
     expect(apiService.getMovies).toHaveBeenCalled();
     expect(component.movies).toEqual(movies);
   }));
@@ -88,36 +92,36 @@ describe('HomeComponent', () => {
   });
 
   it('deve buscar filmes na inicialização', fakeAsync(() => {
-    // Aqui, definimos movies com um tipo explícito, garantindo que ele corresponda à estrutura esperada.
     const movies: Movie[] = [
       {
         id: 1,
         title: 'Movie 1',
         image_path: 'path/to/image1.jpg',
         release_year: '2022',
-        genres: ['Action', 'Adventure']
+        genres: ['Action', 'Adventure'],
+        overview: 'Overview do Movie 1',
+        vote_average: 7.5
       },
       {
         id: 2,
         title: 'Movie 2',
         image_path: 'path/to/image2.jpg',
         release_year: '2023',
-        genres: ['Drama', 'Romance']
+        genres: ['Drama', 'Romance'],
+        overview: 'Overview do Movie 2',
+        vote_average: 8.0
       },
     ];
 
-    // Quando configuramos o valor retornado pelo espião, também especificamos o tipo
-    // para garantir que ele corresponda ao que o método getMovies deveria retornar.
     spyOn(apiService, 'getMovies').and.returnValue(of({
       filters: { page: 1 },
       metaData: { pagination: { currentPage: 1, totalPages: 1 } },
-      movies: movies, // Aqui usamos a variável movies diretamente.
+      movies: movies,
     }));
 
     component.ngOnInit();
-    tick(3000); // Avança o tempo para completar chamadas assíncronas.
+    tick(3000);
 
-    // As verificações seguem como anteriormente.
     expect(apiService.getMovies).toHaveBeenCalled();
     expect(component.movies).toEqual(movies);
   }));
