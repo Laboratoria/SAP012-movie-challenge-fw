@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from './../../../environments/environment';
+import { environment } from 'src/environments/environment';
+
 import { Movie } from 'src/models/Movie';
 import { formatMovie, formatGenresToMap } from 'src/utils/transformers';
 
