@@ -29,7 +29,7 @@ export class ListOptionsComponent implements OnChanges, DoCheck {
   ngOnChanges(changes: SimpleChanges): void {
     this.optionsObj = this.options.map(option => JSON.parse(option));
     // this.selectedOptionStr = JSON.stringify(this.selectedOption)
-    console.log(changes['selectedOption'].currentValue)
+    // console.log(changes['selectedOption'].currentValue)
   }
 
   selectOption(): void {

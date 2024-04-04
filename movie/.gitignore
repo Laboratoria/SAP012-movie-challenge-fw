@@ -6,7 +6,7 @@
 
 # Angular environment files
 environment.ts
-environment.prod.ts
+environment.development.ts
 
 # Node
 /node_modules
