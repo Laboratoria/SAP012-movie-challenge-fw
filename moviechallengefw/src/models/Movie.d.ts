@@ -1,5 +1,8 @@
-export interface Movie {
-    title: string;
+export interface Movie{
+    id: number;
+    original_title: string;
+    overview: string;
+    release_date: number;
     poster_path: string;
-    release_date: Date;
+    genres: string[];
 }
