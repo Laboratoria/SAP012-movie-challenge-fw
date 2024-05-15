@@ -1,0 +1,33 @@
+/* movie-card.component.css */
+.movie-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 200px;
+    margin: 16px;
+    background-color: #f9f9f9;
+  }
+  
+  .movie-poster {
+    width: 120px;
+    height: auto;
+    margin-right: 16px;
+  }
+  
+  .movie-details {
+    flex: 1;
+  }
+  
+  .movie-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .movie-release,
+  .movie-original-title {
+    margin-bottom: 4px;
+    font-size: 16px;
+  }
+  
