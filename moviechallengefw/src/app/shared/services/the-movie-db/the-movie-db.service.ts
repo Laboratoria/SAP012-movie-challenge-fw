@@ -16,7 +16,6 @@ import { formatMovie } from 'src/utils/transformers';
   providedIn: 'root'
 })
 export class TheMovieDbService {
-
     // Criar cabeçalhos para incluir o token de autenticação da API nas nossas requisições
     private readonly headers = new HttpHeaders().set('Authorization', `Bearer ${environment.TOKEN_API}`);
 
@@ -73,3 +72,40 @@ export class TheMovieDbService {
 // "Lazy" vs. "Eager": Promises são "eager", o que significa que elas são executadas assim que são criadas, independentemente de terem um manipulador .then() ou não. Observables, por outro lado, são "lazy", o que significa que eles não começam a emitir valores até que você se inscreva neles com um observador.
 // Cancelamento de Assinatura: Os Observables permitem que você cancele uma assinatura (unsubscribe) quando não precisa mais dos dados, evitando vazamentos de memória. Promises não têm essa capacidade embutida.
 // Em resumo, enquanto as Promises são adequadas para operações assíncronas únicas, os Observables oferecem uma maneira mais poderosa e flexível de lidar com fluxos de dados assíncronos e são mais adequados para operações complexas e contínuas, como eventos de usuário, streams de dados em tempo real, entre outros.
+
+// Vamos analisar essa função passo a passo:
+
+// @Injectable({ providedIn: 'root' }):
+
+// O decorador @Injectable() é usado para marcar a classe TheMovieDbService como um serviço que pode ser injetado em outras partes do código.
+// providedIn: 'root' indica que o serviço será fornecido na raiz do aplicativo Angular, tornando-o disponível globalmente.
+// private readonly headers = new HttpHeaders().set('Authorization', Bearer ${environment.TOKEN_API});:
+
+// Aqui, estamos criando um cabeçalho HTTP para incluir o token de autenticação da API em todas as nossas requisições. O token é recuperado do ambiente (environment.TOKEN_API).
+// Este cabeçalho é definido como privado e somente leitura (readonly), o que significa que ele não pode ser alterado após sua criação.
+// constructor(private readonly http: HttpClient):
+
+// Este é o construtor da classe TheMovieDbService, que é chamado quando uma instância desse serviço é criada.
+// Ele recebe uma instância do serviço HttpClient como um parâmetro. Isso é feito através da injeção de dependência, o que significa que o Angular cuida de fornecer automaticamente uma instância válida de HttpClient quando o serviço é instanciado.
+// getMovies(): Observable<Movie[]>:
+
+// Este método é usado para obter filmes da API.
+// Ele retorna um Observable que emite um array de objetos do tipo Movie.
+// A função Observable<Movie[]> indica que este método retorna um fluxo de dados assíncronos que emite arrays de filmes.
+// return this.http.get<Movie[]>(${environment.URL_API}/discover/movie, { headers: this.headers }):
+
+// Aqui, fazemos uma requisição GET para a API do The Movie DB para obter filmes.
+// Utilizamos o serviço HttpClient para fazer a requisição. A URL da API é definida em environment.URL_API e é concatenada com /discover/movie para obter os filmes.
+// Passamos o cabeçalho que criamos anteriormente (this.headers) como parte da configuração da requisição, para incluir o token de autenticação da API.
+// .pipe(map((response:any) => ...)):
+
+// Usamos o operador pipe para encadear operadores do RxJS. Neste caso, estamos usando o operador map.
+// O operador map é usado para transformar os resultados da requisição em um formato que podemos usar na nossa aplicação.
+// response.results.map((result: any) => formatMovie(result))):
+
+// Aqui, mapeamos cada resultado da requisição para o modelo de filme usando a função formatMovie.
+// A função formatMovie é uma função auxiliar que transforma os dados dos filmes recebidos da API em um formato mais adequado para nossa aplicação.
+// response: any:
+
+// Como o tipo de resposta da API pode não ser estritamente do tipo Movie[], usamos any para flexibilizar o tipo dos dados recebidos temporariamente. Isso permite que o TypeScript aceite a atribuição dos dados ao tipo esperado.
+// Em resumo, esta função é responsável por fazer uma requisição GET para a API do The Movie DB, obter filmes, transformar os dados recebidos em um formato adequado e retornar esses filmes como um Observable<Movie[]>.
