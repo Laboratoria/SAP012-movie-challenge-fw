@@ -1,13 +1,12 @@
-## <1.0.0> - <2024-05-06>
+## <1.0.2> - <2024-05-15>
 
 ### Aprendizados da Sprint
-- Aprendi um pouco sobre typescript
-- Defini um tipo TypeScript chamado Movie para representar um filme. Este tipo inclui os campos necessários tanto para a renderização da interface do usuário quanto para a lógica de negócios
--  Criei uma função chamada formatMovie. Esta função será responsável pela transformação dos dados do filme da API para o modelo de negócios Movie.
-- Testei essa função. 
+- Criei um componente Angular (movie-card) para exibir informações sobre um filme. A Input mostra informações relevantes, como o pôster do filme, o título original e o ano de lançamento.
+- Criei um componente Angular (movie-list) para exibir o catálogo de filmes em formato de grade. A Input mostrará cada filme usando o componente app-movie-card.
 
 ### Adicionado
-Criei um token de API para The Movie DB
+Printei o primeiro card na tela
+Estruturei e estilizei o primeiro card.
  
 
 ### Alterado
@@ -16,7 +15,7 @@ Criei um token de API para The Movie DB
 
 ### Corrigido
 
-Foi feita a correção do teste da função formatMovie. 
+Foi feita a correção do arquivo app.component.html e movie-list.component.html
 
 ### Removido
 
