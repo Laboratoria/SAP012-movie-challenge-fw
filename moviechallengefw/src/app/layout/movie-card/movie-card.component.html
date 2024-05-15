@@ -1,0 +1,10 @@
+<div class="movie-card" *ngIf="movie">
+    <div class="movie-poster">
+        <img [src]="movie.poster_path" alt="Movie Poster">
+    </div>
+    <div class="movie-details">
+      <h2 class="movie-title">{{ movie.title }}</h2>
+      <p class="movie-release">Release Date: {{ movie.release_date }}</p>
+      <!-- Adicione outras propriedades do filme conforme necessário -->
+    </div>
+  </div>
