@@ -1,20 +1,20 @@
-## <1.0.1> - <2024-05-03>
+## <1.1.0> - <2024-05-03>
 
 ### Aprendizados da Sprint
 
-Alteração no mock do teste, para validar o teste da função.
+Como criar uma pasta por comando, estudos sobre como fazer um Injectable, Constructor e Observable. Printar um card
 
 ### Adicionado
 
-
+pasta movie-card
 
 ### Alterado
 
-mock da função formatMovie
+A pasta service, adicionamos uma pasta the-movie-db, pois desta formar seria possível puxar outras informações da API
 
 ### Corrigido
 
-teste da função formatMovie
+pasta service
 
 ### Removido
 
