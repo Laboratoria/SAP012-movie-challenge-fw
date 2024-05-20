@@ -1,0 +1,1 @@
+// armazenar a definição do tipo em TypeScript
