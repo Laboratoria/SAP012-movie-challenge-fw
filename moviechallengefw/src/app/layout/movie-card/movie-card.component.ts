@@ -7,15 +7,7 @@ import { Movie } from 'src/models/Movie.d'; // Importa o tipo Movie do arquivo M
   styleUrls: ['./movie-card.component.css'] // Define os estilos CSS do componente
 })
 export class MovieCardComponent {
-  @Input() movie: Movie = { // Define a propriedade de entrada 'movie' inicializada com um objeto Movie vazio
-    id: 0,
-    title: '',
-    poster_path: '',
-    release_date: '',
-    overview: '', // Torna a propriedade overview opcional
-    vote_average: 0 // Torna a propriedade vote_average opcional
-  };
-
+  @Input() movie: Movie | undefined; 
   constructor() { } // Construtor vazio do componente
 }
 

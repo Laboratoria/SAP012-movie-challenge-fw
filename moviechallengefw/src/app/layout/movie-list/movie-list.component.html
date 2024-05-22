@@ -1,0 +1,23 @@
+<div class="movie-list">
+    <app-movie-card *ngFor="let m of movies" [movie]="m">
+
+    </app-movie-card>
+</div>
+
+ <!-- Inicia a repetição da estrutura do componente app-movie-card para cada elemento da lista movies
+<app-movie-card
+ Utiliza a diretiva *ngFor para iterar sobre cada item da lista movies
+*ngFor="let m of movies"
+ Passa o item atual da lista (m) como valor da propriedade movie do componente app-movie-card
+[movie]="m">
+</app-movie-card>
+
+ Explicação detalhada:
+ 1. <app-movie-card>: Este é o seletor do componente Angular app-movie-card.
+ 2. *ngFor="let m of movies": A diretiva *ngFor é usada para iterar sobre a lista movies.
+ - let m: Cria uma variável m que representa o item atual da iteração.
+ - of movies: Indica que movies é a lista a ser iterada.
+ 3. [movie]="m": Esta é uma vinculação de propriedade (property binding) que passa o item atual m como valor da propriedade movie do componente app-movie-card.
+ - movie é uma entrada (input) esperada pelo componente app-movie-card, que será preenchida com o item m da lista movies.
+
+Em resumo, esse código renderiza um componente app-movie-card para cada item da lista movies, passando o item atual como uma propriedade para o componente. -->

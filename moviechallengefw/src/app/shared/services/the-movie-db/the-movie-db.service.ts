@@ -25,7 +25,7 @@ export class TheMovieDbService {
     // Este é o método que usaremos para obter filmes da API
     getMovies(): Observable<Movie[]> {
       // Realizar uma requisição GET para a API do The Movie DB para obter filmes
-      return this.http.get<Movie[]>(`${environment.URL_API}/discover/movie`, { headers: this.headers }).pipe(
+      return this.http.get<Movie[]>(`${environment.URL_API}`, { headers: this.headers }).pipe(
         // Usar o operador map para transformar os resultados da requisição em um formato que podemos usar na nossa aplicação
         map((response:any) => 
           // Mapear cada resultado para o modelo de filme usando a função formatMovie

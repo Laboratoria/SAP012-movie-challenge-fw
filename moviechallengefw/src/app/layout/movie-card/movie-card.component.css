@@ -1,31 +1,28 @@
-.movie-card {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    max-width: 200px;
-    margin: 16px;
-    background-color: #f9f9f9;
-  }
-  
-  .movie-poster {
-    width: 120px;
+.movie-card{
+    text-align: center;
+    padding: 5px;
+}
+
+.movie-poster{
+    width: 250px;
+    max-width: 100%;
     height: auto;
-    margin-right: 16px;
-  }
-  
-  .movie-details {
-    flex: 1;
-  }
-  
-  .movie-title {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  
-  .movie-release,
-  .movie-original-title {
-    margin-bottom: 4px;
-    font-size: 16px;
-  }
+    border-radius: 0 10% 0 10%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-poster:hover {
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10%;
+    box-shadow: 0 0 30px #ff0202;
+    transform: translateY(-20px); /* Adicionando um efeito de elevação ao passar o mouse */
+}
+
+.movie-details{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
+    color:aliceblue;
+    text-align: center;
+}
