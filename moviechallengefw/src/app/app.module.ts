@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import { TheMovieDbService } from './shared/services/the-movie-db/the-movie-db.service';
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [   //Os componentes
     AppComponent,
