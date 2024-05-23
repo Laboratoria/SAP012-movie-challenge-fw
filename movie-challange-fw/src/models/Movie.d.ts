@@ -1,6 +1,6 @@
 export type Movie = {
     title: string;
-    poster: string;
+    poster_path: string;
     release_year: number;
     id: number;
 }

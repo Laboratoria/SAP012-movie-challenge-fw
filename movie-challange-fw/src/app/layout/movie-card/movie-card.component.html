@@ -1,1 +1,12 @@
-<p>movie-card works!</p>
+<h1>Home</h1>
+
+<div *ngFor="let movie of movieList">
+    <div>
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.overview }}</p>
+        <img [src]="movie.poster_path" alt="{{ movie.title }}">
+    </div>
+    <div>
+        <p>{{movie.release_year}}</p>
+    </div>
+</div>
