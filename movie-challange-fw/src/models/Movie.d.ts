@@ -3,6 +3,7 @@ export type Movie = {
     poster_path: string;
     release_year: number;
     id: number;
+    overview: string;
 }
 
-// Definição do tipo em TypeScript (Movie)
+// fazendo tipagem

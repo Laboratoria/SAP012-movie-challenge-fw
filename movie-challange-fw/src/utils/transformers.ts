@@ -8,7 +8,8 @@ const formatMovie = (rawData: any): Movie => {
     title: rawData.title,
     poster_path: `${baseUrl}${rawData.poster_path}`,
     release_year: new Date (rawData.release_date).getFullYear(),
-    id: rawData.id
+    id: rawData.id,
+    overview: rawData.overview
   };
 };
 

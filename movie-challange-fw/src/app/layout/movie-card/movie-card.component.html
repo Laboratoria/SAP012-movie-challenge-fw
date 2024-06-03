@@ -1,12 +1,14 @@
-<h1>Home</h1>
+<!-- USANDO DIRETIVA *ngFOR -->
+<!-- declara uma variavel movie, faz a interação usando o OF da lista de filmes movieList que está no component.ts -->
 
-<div *ngFor="let movie of movieList">
+<div class="container__card-01 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 lg:px-0 justify-center items-center max-w-1440"
+    *ngFor="let movie of movieLast">
     <div>
+        <img class="container__card-image object-cover w-full h-64 md:h-96" [src]="movie.poster_path" alt="{{ movie.title }}">
         <h2>{{ movie.title }}</h2>
-        <p>{{ movie.overview }}</p>
-        <img [src]="movie.poster_path" alt="{{ movie.title }}">
+        <!-- <p>{{ movie.overview }}</p> -->
     </div>
     <div>
         <p>{{movie.release_year}}</p>
     </div>
-</div>
+</div> 

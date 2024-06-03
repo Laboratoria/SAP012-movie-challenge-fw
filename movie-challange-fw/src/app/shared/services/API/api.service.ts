@@ -1,4 +1,5 @@
 // Todo o processo de obtenção dos dados serão feitos no metodo APIService //
+// Componentes da comunicação Http - Url / metodo (get ou post) / headers/ body
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -33,7 +34,7 @@ export class APIService {
       );
   }
 }
-
+// return this.http.get<Movie[]>(this.URL)} -- fazendo retorno dos dados
 // @Injectable marca a classe como um serviço injetável
 // HttpClient: um tipo de dependencia que faz requisições HTTP
 // Observable: Trabalhar com fluxos de dados assíncronos

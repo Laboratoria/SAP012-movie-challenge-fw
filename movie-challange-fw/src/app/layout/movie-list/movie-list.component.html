@@ -1,3 +1,7 @@
-<p>movie-list works!</p>
 
-<!-- *ngFor="let m of movies": A diretiva *ngFor é usada para iterar sobre a lista movies -->
+    <div class="container__movie-list" *ngFor=" let movie of movies">
+        <div class="grid-card" grid-cols-2 md:grid-cols-5 gap-4>
+            <app-movie-card *ngFor="let movie of movies">
+            </app-movie-card>
+        </div>
+    </div>
