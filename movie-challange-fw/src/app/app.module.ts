@@ -17,7 +17,8 @@ import { HeaderComponent } from './layout/header/header.component';
     AppComponent,   //Componente principal
     MovieCardComponent, //Componente para exibir card de filmes
     HomeComponent,  //Componente home
-    MovieListComponent, HeaderComponent // Componente para exibir lista de filmes
+    MovieListComponent, // Componente para exibir lista de filmes
+    HeaderComponent 
   ],
   imports: [
     BrowserModule,  // Módulo para navegação do browser
