@@ -6,4 +6,4 @@ export type Movie = {
     overview: string;
 }
 
-// fazendo tipagem
+// fazendo tipagem para representar um filme

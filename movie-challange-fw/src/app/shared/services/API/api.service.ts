@@ -8,6 +8,7 @@ import { Observable, map } from 'rxjs';
 import { Movie } from 'src/models/Movie';
 import { formatMovie } from 'src/utils/transformers';
 
+// Serviço de API para buscar dados dos filmes
 @Injectable({
   providedIn: 'root',
 })
@@ -16,20 +17,20 @@ export class APIService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<any[]> {   //**listar():** Método que faz uma requisição GET à apiUrl e retorna um Observable de um array de qualquer tipo (any[]).
+  listar(): Observable<Movie[]> {   //**listar():** Método que faz uma requisição GET à apiUrl e retorna um Observable de um array de qualquer tipo (any[]).
     return this.http.get<any>(`{this.apiUrl}`);
   }
-//headers: Cria um objeto HttpHeaders com o cabeçalho de autorização usando o token da API.
+// Cabeçalho de autorização usando o token da API
   getMovies(): Observable<Movie[]> {
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${environment.TOKEN_API}`
     );
     return this.http
-      .get<{ results: any[] }>(`${this.apiUrl}/discover/movie`, { headers })
+      .get<Movie[] >(`${this.apiUrl}/discover/movie`, { headers })
       .pipe(    //pipe: Encadeia operadores do RxJS para transformar os dados recebidos.
-        map((response) =>
-          response.results.map((rawData) => formatMovie(rawData))
+        map((response:any) =>
+          response.results.map((rawData:any) => formatMovie(rawData))
         )
       );
   }
