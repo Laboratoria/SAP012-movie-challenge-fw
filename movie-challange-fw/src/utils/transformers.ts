@@ -1,4 +1,5 @@
 // Implementação da Função - Transformação dos dados criado no arquivo models/Movie
+import { Genre } from 'src/models/Genre';
 import { Movie } from 'src/models/Movie';
 
 //Função responsavel pela transformação dos dados brutos de um filme para o formato definido pelo modelo Movie
@@ -24,6 +25,12 @@ export function formatGenresToMap(genresData: { id: number, name: string }[]): M
   return new Map(genresData.map(genre => [genre.id, genre.name]));
 }
 
+export function formatGenresToOptions(genresData: {id: number, name: string }[]): Array<{value: string, label:string}> {
+  return genresData.map(genre => ({
+    value:genre.id.toString(),
+    label: genre.name
+  }));
+}
 
 export { formatMovie };
 
