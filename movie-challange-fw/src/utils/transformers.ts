@@ -2,10 +2,11 @@
 import { Movie } from 'src/models/Movie';
 
 //Função responsavel pela transformação dos dados brutos de um filme para o formato definido pelo modelo Movie
-const formatMovie = (rawData: any): Movie => {
+ const formatMovie = (rawData: any, genresMap: Map<number, string>): Movie => {
 
   //URL base para as imagens dos filmes
   const baseUrl = 'https://image.tmdb.org/t/p/w500';
+  const genres: string[] = rawData.genre_ids ? rawData.genre_ids.map((genreId: number) => genresMap.get(genreId) || 'Gênero não encontrado!') : ['Gênero não disponível'];
 
   //Retorna um objeto Movie com as propriedades formatadas
   //Atribuir as propriedades relevantes dos dados da API às propriedades correspondentes no modelo de negócios Movie
@@ -14,9 +15,15 @@ const formatMovie = (rawData: any): Movie => {
     poster_path: `${baseUrl}${rawData.poster_path}`,
     release_year: new Date (rawData.release_date).getFullYear(),
     id: rawData.id,
-    overview: rawData.overview
+    overview: rawData.overview,
+    genres
   };
-};
+}
+
+export function formatGenresToMap(genresData: { id: number, name: string }[]): Map<number, string> {
+  return new Map(genresData.map(genre => [genre.id, genre.name]));
+}
+
 
 export { formatMovie };
 

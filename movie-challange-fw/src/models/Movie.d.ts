@@ -4,6 +4,7 @@ export type Movie = {
     release_year: number;
     id: number;
     overview: string;
+    genres: string[];
 }
 
 // fazendo tipagem para representar um filme
