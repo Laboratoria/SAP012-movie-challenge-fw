@@ -10,6 +10,7 @@ import { APIService } from './shared/services/API/api.service';
 import { HomeComponent } from './layout/home/home.component';
 // import { MovieListComponent } from './layout/movie-list/movie-list.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { ListOptionsComponent } from './layout/list-options/list-options.component';
 
 //Declaração do módulo principal do Angular
 @NgModule({
@@ -18,7 +19,8 @@ import { HeaderComponent } from './layout/header/header.component';
     MovieCardComponent, //Componente para exibir card de filmes
     HomeComponent,  //Componente home
     // MovieListComponent, // Componente para exibir lista de filmes
-    HeaderComponent 
+    HeaderComponent, 
+    ListOptionsComponent 
   ],
   imports: [
     BrowserModule,  // Módulo para navegação do browser
