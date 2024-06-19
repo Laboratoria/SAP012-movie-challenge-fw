@@ -17,9 +17,9 @@ export class APIService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<Movie[]> {   //**listar():** Método que faz uma requisição GET à apiUrl e retorna um Observable de um array de qualquer tipo (any[]).
-    return this.http.get<any>(`{this.apiUrl}`);
-  }
+  // listar(): Observable<Movie[]> {   //**listar():** Método que faz uma requisição GET à apiUrl e retorna um Observable de um array de qualquer tipo (any[]).
+  //   return this.http.get<any>(`{this.apiUrl}`);
+  // }
 // Cabeçalho de autorização usando o token da API
   getMovies(): Observable<Movie[]> {
     const headers = new HttpHeaders().set(

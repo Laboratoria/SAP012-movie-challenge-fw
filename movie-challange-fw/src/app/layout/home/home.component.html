@@ -1,0 +1,11 @@
+<div class="film-box-container">
+    <div class="film-box" *ngFor="let movie of movies">
+        <img class="card-image" [src]="movie.poster_path" alt="{{ movie.title }}">
+        <div class="box-title">
+            <h2 class="title-film">{{ movie.title }}</h2>
+            <p>{{movie.release_year}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- <app-movie-list [movies]="movies"></app-movie-list> -->

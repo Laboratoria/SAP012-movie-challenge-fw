@@ -8,7 +8,7 @@ import { MovieCardComponent } from './layout/movie-card/movie-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { APIService } from './shared/services/API/api.service';
 import { HomeComponent } from './layout/home/home.component';
-import { MovieListComponent } from './layout/movie-list/movie-list.component';
+// import { MovieListComponent } from './layout/movie-list/movie-list.component';
 import { HeaderComponent } from './layout/header/header.component';
 
 //Declaração do módulo principal do Angular
@@ -17,7 +17,7 @@ import { HeaderComponent } from './layout/header/header.component';
     AppComponent,   //Componente principal
     MovieCardComponent, //Componente para exibir card de filmes
     HomeComponent,  //Componente home
-    MovieListComponent, // Componente para exibir lista de filmes
+    // MovieListComponent, // Componente para exibir lista de filmes
     HeaderComponent 
   ],
   imports: [

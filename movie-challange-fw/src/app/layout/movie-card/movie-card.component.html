@@ -4,7 +4,7 @@
 
 <!-- ITEM DO FILME -->
 <div class="film-box-container">
-    <div class="film-box" *ngFor="let movie of movieLast">
+    <div class="film-box" *ngFor="let movie of movie">
         <img class="card-image" [src]="movie.poster_path" alt="{{ movie.title }}">
         <div class="box-title">
             <h2 class="title-film">{{ movie.title }}</h2>
@@ -12,3 +12,5 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="film-box" *ngFor="let movie of movie"> -->
