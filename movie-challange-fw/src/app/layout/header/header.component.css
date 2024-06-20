@@ -1,13 +1,10 @@
 .logo{
-    margin: 0 auto;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-color);
+    width: 250px;
+    /* margin: 0 auto; */
     padding: 2rem 0;
 }
 
-span {
-    text-transform: uppercase;
-    color: var(--primary-color);
-    font-weight: 700;
+img{
+    width: 190px;
+    height: auto;
 }
