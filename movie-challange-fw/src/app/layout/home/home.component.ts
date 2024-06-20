@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Movie } from 'src/models/Movie';
-import { APIService } from 'src/app/shared/services/API/api.service';
+import { ApiService } from 'src/app/shared/services/API/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,11 @@ import { APIService } from 'src/app/shared/services/API/api.service';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];  // Array de filmes para exibição
 
-  constructor(private apiService: APIService) {} // contructor é usado para injeção de dependência no Angular
+  constructor(private apiService: ApiService, private router: Router) {} // contructor é usado para injeção de dependência no Angular
+
+  verDetalhes(id: number): void {
+    this.router.navigate(['movie', id]);
+  }
 
   // Método de ciclo de vida do Angular, executado quando o componente é inicializado
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 // Componente que exibe a lista de filmes
 import { Component, OnInit } from '@angular/core';
 
-import { APIService } from './../../shared/services/API/api.service';
+import { ApiService } from './../../shared/services/API/api.service';
 import { Movie } from 'src/models/Movie';
 
 @Component({
@@ -12,12 +12,8 @@ import { Movie } from 'src/models/Movie';
 export class MovieCardComponent implements OnInit {
   movie: Movie[] = [];  // Array de filmes para exibição
 
-  constructor(private apiService: APIService) {} 
+  constructor(private apiService: ApiService) {} 
   ngOnInit(): void {
 
   }
     };
-
-
-
-//o this é o metodso pa
