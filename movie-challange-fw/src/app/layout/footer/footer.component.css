@@ -1,0 +1,9 @@
+.footer{
+    display: flex;
+    padding: 2.3rem;
+}
+
+p{
+    text-align: center;
+    font-size: 14px;
+}

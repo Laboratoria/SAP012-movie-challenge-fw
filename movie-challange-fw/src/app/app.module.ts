@@ -13,6 +13,7 @@ import { HomeComponent } from './layout/home/home.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { ListOptionsComponent } from './layout/list-options/list-options.component';
 import { MovieDetailComponent } from './layout/movie-detail/movie-detail.component';
+import { FooterComponent } from './layout/footer/footer.component';
 
 //Declaração do módulo principal do Angular
 @NgModule({
@@ -23,7 +24,8 @@ import { MovieDetailComponent } from './layout/movie-detail/movie-detail.compone
     // MovieListComponent, // Componente para exibir lista de filmes
     HeaderComponent, 
     ListOptionsComponent,
-    MovieDetailComponent 
+    MovieDetailComponent,
+    FooterComponent 
   ],
   imports: [
     BrowserModule,  // Módulo para navegação do browser
